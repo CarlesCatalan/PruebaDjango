@@ -12,7 +12,11 @@
 <body>
     <div class="header">
         {% if user.is_authenticated %}
+        {% if profile.foto %}
         <img src="{{ profile.foto.url }}" alt="Foto" width="40" class="profile-pic">
+        {% else %}
+        <img src="{% static 'blog/usuario-default.jpg' %}" alt="Foto" width="40" class="profile-pic">
+        {% endif %}
         <span>Bienvenido, {{ user.username }}</span>
         <a href="{% url 'perfil' %}" style="margin-left:12px;">Mi perfil</a>
         <form action="{% url 'logout' %}" method="post" style="display:inline; margin-left:12px;">

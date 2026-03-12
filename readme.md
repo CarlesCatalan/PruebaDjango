@@ -63,7 +63,6 @@ python manage.py runserver
 8. **Accede al proyecto**
 - Home: http://localhost:8000/
 - Admin: http://localhost:8000/admin/
-- Blog: http://localhost:8000/blog/
 
 ## 📖 Páginas disponibles
 
