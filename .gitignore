@@ -39,6 +39,7 @@ db.sqlite3
 *.swo
 *~
 .DS_Store
+ExplicaciónLógicaDelProyecto.md
 
 # OS
 .DS_Store
