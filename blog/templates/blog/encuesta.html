@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+{% block title %}Encuesta Django{% endblock %}
+{% block content %}
+<div class="top-links">
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</div>
+<h1>Encuesta de clientes</h1>
+<p class="subtitle">Recoge opinión y nivel de satisfacción del 1 al 5.</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar opinión</button>
+</form>
+
+{% if user.is_staff or user.is_superuser %}
+<h2>Opiniones recibidas</h2>
+<img src="data:image/png;base64,{{ grafico }}" alt="Gráfico de satisfacción" />
+{% for encuesta in encuestas %}
+<div class="card">
+    <strong>{{ encuesta.contacto.username }}</strong>
+    <p>{{ encuesta.opinion }}</p>
+    <p>Satisfacción: {{ encuesta.satisfaccion }}/5</p>
+    <small>{{ encuesta.fecha|date:"d/m/Y H:i" }}</small>
+</div>
+{% empty %}
+<p>No hay opiniones aún.</p>
+{% endfor %}
+{% endif %}
+{% endblock %}
+
+</html>

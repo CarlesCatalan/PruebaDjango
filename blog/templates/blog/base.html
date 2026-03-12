@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Django{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'blog/styles.css' %}?v=202">
+</head>
+
+<body>
+    <div class="header">
+        {% if user.is_authenticated %}
+        <img src="{{ profile.foto.url }}" alt="Foto" width="40" class="profile-pic">
+        <span>Bienvenido, {{ user.username }}</span>
+        <a href="{% url 'perfil' %}" style="margin-left:12px;">Mi perfil</a>
+        <form action="{% url 'logout' %}" method="post" style="display:inline; margin-left:12px;">
+            {% csrf_token %}
+            <button type="submit" class="logout-btn">Cerrar sesión</button>
+        </form>
+        {% else %}
+        <a href="{% url 'login' %}">Iniciar sesión</a>
+        <a href="{% url 'registro' %}">Registrarse</a>
+        {% endif %}
+    </div>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% block title %}Formulario de saludo{% endblock %}
+{% block content %}
+<div class="top-links">
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</div>
+<h1>Formulario de saludo</h1>
+<p class="subtitle">Escribe tu nombre y te saluda en la siguiente vista.</p>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar</button>
+</form>
+{% endblock %}
