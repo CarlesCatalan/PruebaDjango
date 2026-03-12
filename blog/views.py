@@ -1,6 +1,13 @@
 from django.http import HttpResponse
 import pandas as pd
 import requests
+from django.contrib import messages
+from django.contrib.auth import login as auth_login
+from django.contrib.admin.views.decorators import staff_member_required
+from django.apps import apps
+from django.core.paginator import Paginator
+from django.utils.safestring import mark_safe
+
 
 from PruebaDjango.settings import OPENWEATHER_API_KEY
 from .models import Mensaje, Post, Tarea, Encuesta, Profile
@@ -16,6 +23,31 @@ matplotlib.use('Agg')  # Backend sin GUI, necesario para Django
 
 
 # Create your views here.
+
+# Visor web de bases de datos
+
+
+def tareas_db(request):
+    qs = Tarea.objects.all().order_by('id')
+    df = pd.DataFrame(list(qs.values()))
+    total = len(df)
+
+    if df.empty:
+        html_table = '<p>No hay tareas.</p>'
+    else:
+        for col in df.columns:
+            if pd.api.types.is_datetime64_any_dtype(df[col]):
+                try:
+                    df[col] = df[col].dt.tz_localize(None)
+                except Exception:
+                    pass
+        html_table = df.to_html(
+            index=False, classes='table table-striped', escape=False)
+
+    return render(request, 'blog/tareas_db.html', {
+        'html_table': mark_safe(html_table),
+        'total': total,
+    })
 
 # Home
 
@@ -92,17 +124,17 @@ def encuesta(request):
         if form.is_valid():
             # Control: solo una encuesta por usuario
             if Encuesta.objects.filter(contacto=request.user).exists():
-                return render(request, 'blog/encuesta.html', {
-                    'form': form,
-                    'encuestas': encuestas,
-                    'promedio': promedio,
-                    'grafico': grafico,
-                    'error': 'Ya has enviado tu opinión.'
-                })
+                messages.warning(
+                    request, 'Ya has enviado tu opinión. Solo se permite una encuesta por usuario.')
+                return redirect('encuesta')
             encuesta = form.save(commit=False)
             encuesta.contacto = request.user
             encuesta.save()
+            messages.success(
+                request, '¡Gracias! Tu opinión se ha enviado correctamente.')
             return redirect('encuesta')
+        messages.error(
+            request, 'No se pudo enviar la encuesta. Revisa los campos del formulario.')
     else:
         form = EncuestaForm()
     return render(request, 'blog/encuesta.html', {
@@ -120,8 +152,12 @@ def registro(request):
     if request.method == 'POST':
         form = RegistroForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('home')
+            user = form.save()
+            auth_login(request, user,
+                       backend='django.contrib.auth.backends.ModelBackend')
+            messages.success(
+                request, f'Cuenta creada correctamente. ¡Bienvenido/a, {user.username}!')
+            return redirect('perfil')
     else:
         form = RegistroForm()
     return render(request, 'blog/registro.html', {'form': form})
@@ -190,6 +226,7 @@ def completartarea(request, tarea_id):
 @login_required
 def generarexcel(request):
     if not request.user.is_staff and not request.user.is_superuser:
+        messages.error(request, 'No estás autorizado para descargar el Excel.')
         return redirect('home')
 
     # Extraer datos de todos los modelos

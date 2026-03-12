@@ -85,7 +85,7 @@ python manage.py runserver
 
 - **Backend**: Django 5.2.12
 - **Base de datos**: SQLite (desarrollo)
-- **Análisis**: pandas, matplotlib
+- **Análisis**: pandas, matplotlib, seborn
 - **Exportación**: xlsxwriter
 - **API**: requests
 - **Imágenes**: Pillow
@@ -106,7 +106,7 @@ PruebaDjango/
 │   ├── signals.py                # Signals (auto-crear Profile)
 │   ├── middleware.py             # Middleware personalizado
 │   └── context_processors.py     # Context processors
-├── PruebaDjango/         # Configuración del proyecto
+├── PruebaDjango/                 # Configuración del proyecto
 │   ├── settings.py               # Settings
 │   ├── urls.py                   # URLs raíz
 │   └── wsgi.py / asgi.py         # ASGI/WSGI
@@ -132,19 +132,9 @@ PruebaDjango/
 - **pandas docs**: https://pandas.pydata.org/docs/
 - **OpenWeather API**: https://openweathermap.org/api
 
-## Seguridad (producción)
-
-Antes de desplegar a producción:
-1. Cambia `SECRET_KEY` en `.env`
-2. Establece `DEBUG=False`
-3. Configura `ALLOWED_HOSTS` correctamente
-4. Usa una base de datos real (PostgreSQL, MySQL)
-5. Activa HTTPS
-6. Revisa la checklist de seguridad: `python manage.py check --deploy`
-
 ## Contribuir
 
-Este es un proyecto educativo. Siéntete libre de mejorarlo, añadir features o reportar bugs.
+Este es un proyecto de prueba para estudiar el framework de Django. Puede contener errores o prácticas mejorables ya que está orientado al aprendizaje. Al ser un proyecto de práctica, no se necesita ninguna contribución.
 
 ## Licencia
 
