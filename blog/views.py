@@ -5,6 +5,7 @@ import requests
 from PruebaDjango.settings import OPENWEATHER_API_KEY
 from .models import Mensaje, Post, Tarea, Encuesta, Profile
 import matplotlib.pyplot as plt
+import seaborn as sns
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import EncuestaForm, MensajeForm, SaludoForm, TareaForm, RegistroForm, ProfileForm
@@ -73,7 +74,7 @@ def encuesta(request):
             conteo = df['satisfaccion'].value_counts().reindex(
                 niveles, fill_value=0)
             plt.figure(figsize=(7, 4))
-            conteo.plot(kind='bar', color='skyblue')
+            sns.barplot(x=conteo.index, y=conteo.values, palette='viridis')
             plt.title('Satisfacción')
             plt.xlabel('Nivel de satisfacción')
             plt.ylabel('Número de respuestas')
@@ -111,6 +112,7 @@ def encuesta(request):
         'grafico': grafico,
     })
 
+
 # Registros
 
 
@@ -123,6 +125,7 @@ def registro(request):
     else:
         form = RegistroForm()
     return render(request, 'blog/registro.html', {'form': form})
+
 
 # Mensajes
 

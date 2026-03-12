@@ -2,17 +2,17 @@
 
 Un proyecto práctico de Django 5.2 para aprender gestión de usuarios, tareas, encuestas, análisis de datos con pandas y consumo de APIs externas.
 
-## ✨ Características
+## Características
 
-- 👤 **Autenticación & Perfiles**: Login, registro y perfiles de usuario con foto
-- ✅ **Gestión de Tareas**: Crear, listar, completar y buscar tareas
-- 💬 **Sistema de Mensajes**: Escribir y leer mensajes/libro de visitas
-- 📊 **Encuestas**: Crear encuestas, calcular satisfacción, gráficos con pandas
-- 📈 **Análisis de Datos**: Exportar datos a Excel, gráficos interactivos
-- 🌐 **APIs Externas**: Consumir OpenWeather para mostrar clima
-- 🛡️ **Seguridad**: CSRF protection, validación de propiedades, POST-only en acciones
+-  **Autenticación & Perfiles**: Login, registro y perfiles de usuario con foto
+-  **Gestión de Tareas**: Crear, listar, completar y buscar tareas
+-  **Sistema de Mensajes**: Escribir y leer mensajes/libro de visitas
+-  **Encuestas**: Crear encuestas, calcular satisfacción, gráficos con pandas
+-  **Análisis de Datos**: Exportar datos a Excel, gráficos interactivos
+-  **APIs Externas**: Consumir OpenWeather para mostrar clima
+-  **Seguridad**: CSRF protection, validación de propiedades, POST-only en acciones
 
-## 🚀 Instalación rápida
+## Instalación rápida
 
 ### Prerequisites
 - Python 3.11+
@@ -64,7 +64,7 @@ python manage.py runserver
 - Home: http://localhost:8000/
 - Admin: http://localhost:8000/admin/
 
-## 📖 Páginas disponibles
+## Páginas disponibles
 
 | URL | Descripción |
 |-----|-------------|
@@ -81,7 +81,7 @@ python manage.py runserver
 | `/blog/registro/` | Crear cuenta |
 | `/admin/` | Panel de administración |
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 - **Backend**: Django 5.2.12
 - **Base de datos**: SQLite (desarrollo)
@@ -90,7 +90,7 @@ python manage.py runserver
 - **API**: requests
 - **Imágenes**: Pillow
 
-## 📝 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 PruebaDjango/
@@ -117,22 +117,22 @@ PruebaDjango/
 └── README.md                     # Este archivo
 ```
 
-## 🎓 Ejercicios prácticos incluidos
+## Ejercicios prácticos incluidos
 
-- ✅ Convertir acciones a POST seguro (CSRF)
-- ✅ Crear perfil de usuario (OneToOne con foto)
-- ✅ Usar pandas para estadísticas
-- ✅ Exportar a Excel con múltiples hojas
-- ✅ Consumir API externa (OpenWeather)
-- ✅ Búsqueda en tareas
+- Convertir acciones a POST seguro (CSRF)
+- Crear perfil de usuario (OneToOne con foto)
+- Usar pandas para estadísticas
+- Exportar a Excel con múltiples hojas
+- Consumir API externa (OpenWeather)
+- Búsqueda en tareas
 
-## 📚 Manuales
+## Manuales
 
 - **Django docs**: https://docs.djangoproject.com/en/5.2/
 - **pandas docs**: https://pandas.pydata.org/docs/
 - **OpenWeather API**: https://openweathermap.org/api
 
-## 🔐 Seguridad (producción)
+## Seguridad (producción)
 
 Antes de desplegar a producción:
 1. Cambia `SECRET_KEY` en `.env`
@@ -142,11 +142,11 @@ Antes de desplegar a producción:
 5. Activa HTTPS
 6. Revisa la checklist de seguridad: `python manage.py check --deploy`
 
-## 🤝 Contribuir
+## Contribuir
 
 Este es un proyecto educativo. Siéntete libre de mejorarlo, añadir features o reportar bugs.
 
-## 📄 Licencia
+## Licencia
 
 Libre para uso educativo.
 
