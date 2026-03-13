@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Tareas Django{% endblock %}
+{% block content %}
+<div class="top-links">
+    <a href="{% url 'tareas' %}">Volver a tareas</a>
+    <a href="{% url 'home' %}">Inicio</a>
+</div>
+<h1>Crear nueva tarea</h1>
+<p class="subtitle">Añade una tarea corta y clara para verla en la lista.</p>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Crear tarea</button>
+</form>
+{% endblock %}

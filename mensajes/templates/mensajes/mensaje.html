@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Mensajes Django{% endblock %}
+{% block content %}
+<div class="top-links">
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</div>
+<h1>Libro de mensajes</h1>
+<p class="subtitle">Escribe un mensaje y revisa los últimos publicados.</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar mensaje</button>
+</form>
+
+<h2>Mensajes</h2>
+{% for mensaje in mensajes %}
+<div class="card">
+    <strong>{{ mensaje.name }}</strong>
+    <p>{{ mensaje.texto }}</p>
+    <small>{{ mensaje.fecha|date:"d/m/Y H:i" }}</small>
+</div>
+{% empty %}
+<p>No hay mensajes todavía.</p>
+{% endfor %}
+{% endblock %}

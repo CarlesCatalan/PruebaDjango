@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Visor Tareas{% endblock %}
+{% block content %}
+<h1>Visor de Tareas (pandas)</h1>
+<p class="subtitle">Total tareas: {{ total }}</p>
+<p><a href="{% url 'home' %}">&larr; Volver</a></p>
+<div class="card">
+    <div class="table-responsive">
+        {{ html_table|safe }}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Pruebas Django{% endblock %}
+{% block content %}
+<h1>Menú de pruebas Django</h1>
+<p class="subtitle">Accede rápido a cada práctica del proyecto.</p>
+<ul class="menu-list">
+    <li><a href="{% url 'posts'%}">Posts</a></li>
+    <li><a href="{% url 'tareas' %}">Lista de tareas</a></li>
+    <li><a href="{% url 'tareas_db' %}">Visor pandas — Tareas</a></li>
+    <li><a href="{% url 'mensaje' %}">Mensajes</a></li>
+    <li><a href="{% url 'encuesta' %}">Encuesta</a></li>
+    <li><a href="{% url 'registro' %}">Registro de usuarios</a></li>
+    <li><a href="{% url 'generarexcel' %}">Generar Excel</a></li>
+    <li><a href="{% url 'clima' %}">Clima en Palma de Mallorca</a></li>
+</ul>
+{% endblock %}

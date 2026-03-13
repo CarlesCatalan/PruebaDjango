@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="top-links">
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</div>
+<h2>Clima actual en {{ clima.ciudad }}</h2>
+{% if clima %}
+<p>{{ clima.ciudad }}: {{ clima.temperatura }}°C, {{ clima.descripcion }}</p>
+<img src="{{ clima.icono }}" alt="icono clima">
+{% elif error %}
+<p style="color:red;">{{ error }}</p>
+{% else %}
+<p>No hay datos disponibles.</p>
+{% endif %}
+{% endblock %}

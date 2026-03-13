@@ -22,9 +22,16 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     # Raíz redirige a home
-    path('', TemplateView.as_view(template_name='blog/home.html')),
+    path('', TemplateView.as_view(template_name='home/home.html')),
     path('admin/', admin.site.urls),
-    path('blog/', include('blog.urls'))
+    # Apps reorganizadas
+    path('', include('home.urls')),
+    path('', include('tareas.urls')),
+    path('', include('mensajes.urls')),
+    path('', include('encuestas.urls')),
+    path('', include('usuarios.urls')),
+    path('', include('posts.urls')),
+    path('', include('clima.urls')),
 ]
 
 if settings.DEBUG:

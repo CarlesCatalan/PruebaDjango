@@ -46,7 +46,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
+    'rest_framework',
+    'home',
+    'tareas',
+    'mensajes',
+    'encuestas',
+    'usuarios',
+    'posts',
+    'clima',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'blog.middleware.DisableHtmlCacheMiddleware',
+    'usuarios.middleware.DisableHtmlCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'PruebaDjango.urls'
@@ -65,14 +72,15 @@ ROOT_URLCONF = 'PruebaDjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'blog.context_processors.user_profile',  # Ver perfil en todas las plantillas
+                # Ver perfil en todas las plantillas
+                'usuarios.context_processors.user_profile',
             ],
         },
     },
@@ -139,6 +147,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/blog/home/'
+LOGIN_REDIRECT_URL = '/home/'
 
-LOGIN_URL = '/blog/login/'
+LOGIN_URL = '/login/'

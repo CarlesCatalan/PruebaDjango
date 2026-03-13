@@ -1,9 +1,0 @@
-{% extends 'blog/base.html' %}
-{% block title %}Saludo Django{% endblock %}
-{% block content %}
-<div class="top-links">
-    <a href="{% url 'home' %}">Volver al inicio</a>
-</div>
-<h1>Hola, {{ nombre|default:"Django" }}</h1>
-<p class="subtitle">Vista simple para probar render de templates.</p>
-{% endblock %}

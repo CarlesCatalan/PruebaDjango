@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Tareas Django{% endblock %}
+{% block content %}
+<div class="top-links">
+    <a href="{% url 'home' %}">Volver al inicio</a>
+    <a href="{% url 'creartarea' %}">Crear nueva tarea</a>
+</div>
+<h1>Lista de tareas</h1>
+<p class="subtitle">Organiza tareas y marca las que ya estén hechas.</p>
+
+<!-- Búsqueda -->
+<form method="get" style="margin-bottom: 20px;">
+    <input type="text" name="search" placeholder="Buscar tareas..." value="{{ search }}"
+        style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+    <button type="submit" style="margin-top: 8px;">Buscar</button>
+    {% if search %}<a href="{% url 'tareas' %}">Limpiar búsqueda</a>{% endif %}
+</form>
+
+{% for tarea in tareas %}
+<div class="card">
+    <strong>{{ tarea.nombre }}</strong>
+    <p>{{ tarea.descripcion }}</p>
+    {% if tarea.completada %}
+    <span class="badge-ok">Completada</span>
+    {% else %}
+    <span class="badge-warn">Pendiente</span>
+    <form method="post" action="{% url 'completartarea' tarea.id %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Marcar como completada</button>
+    </form>
+    {% endif %}
+</div>
+{% empty %}
+<p>No hay tareas todavía.</p>
+{% endfor %}
+{% endblock %}
