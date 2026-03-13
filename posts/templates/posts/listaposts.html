@@ -10,6 +10,29 @@
 <div class="card">
     <strong>{{ post.titulo }}</strong>
     <p>{{ post.contenido }}</p>
+
+    <div class="comments">
+        <h4>Comentarios</h4>
+        {% for comentario in post.comentarios.all %}
+        <div class="comment">
+            <small>{{ comentario.autor.username }} — {{ comentario.fecha|date:"d/m/Y H:i" }}</small>
+            <p>{{ comentario.texto }}</p>
+        </div>
+        {% empty %}
+        <p>No hay comentarios.</p>
+        {% endfor %}
+    </div>
+
+    {% if user.is_authenticated %}
+    <form action="{% url 'comentar_post' post.id %}" method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Comentar</button>
+    </form>
+    {% else %}
+    <p><a href="{% url 'login' %}">Inicia sesión</a> para comentar.</p>
+    {% endif %}
+
 </div>
 {% empty %}
 <p>No hay posts todavía.</p>

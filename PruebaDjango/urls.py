@@ -32,6 +32,7 @@ urlpatterns = [
     path('', include('usuarios.urls')),
     path('', include('posts.urls')),
     path('', include('clima.urls')),
+    path('', include('ia_chat.urls')),
     path('api/', include('api.urls')),
 ]
 

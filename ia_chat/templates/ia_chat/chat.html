@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Chat IA{% endblock %}
+{% block content %}
+<div class="top-links">
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</div>
+
+<h1>Chat IA (simple)</h1>
+<p class="subtitle">Prueba rápida con Google AI Studio.</p>
+
+{% if error %}
+<p class="message error">{{ error }}</p>
+{% endif %}
+
+<div class="card">
+    {% if chat_history %}
+    {% for message in chat_history %}
+    <p>
+        <strong>{% if message.role == 'user' %}Tú{% else %}IA{% endif %}:</strong>
+        {{ message.text|linebreaksbr }}
+    </p>
+    <hr>
+    {% endfor %}
+    {% else %}
+    <p>No hay mensajes todavía.</p>
+    {% endif %}
+</div>
+
+<div class="card">
+    <form method="post">
+        {% csrf_token %}
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <form method="post" style="margin-top:10px;">
+        {% csrf_token %}
+        <button type="submit" name="clear_chat" value="1">Limpiar conversación</button>
+    </form>
+</div>
+{% endblock %}
