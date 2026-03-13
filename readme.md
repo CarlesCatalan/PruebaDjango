@@ -10,6 +10,7 @@ Un proyecto práctico de Django 5.2 para aprender gestión de usuarios, tareas, 
 -  **Encuestas**: Crear encuestas, calcular satisfacción, gráficos con pandas
 -  **Análisis de Datos**: Exportar datos a Excel, gráficos interactivos
 -  **APIs Externas**: Consumir OpenWeather para mostrar clima
+-  **API REST**: Endpoints CRUD para tareas en `/api/tareas/`
 -  **Seguridad**: CSRF protection, validación de propiedades, POST-only en acciones
 
 ## Instalación rápida
@@ -88,7 +89,7 @@ python manage.py runserver
 - **Base de datos**: SQLite (desarrollo)
 - **Análisis**: pandas, matplotlib, seborn
 - **Exportación**: xlsxwriter
-- **API**: requests
+- **API**: requests, Django REST Framework (interno)
 - **Imágenes**: Pillow
 
 ## Estructura del proyecto
