@@ -32,6 +32,7 @@ urlpatterns = [
     path('', include('usuarios.urls')),
     path('', include('posts.urls')),
     path('', include('clima.urls')),
+    path('api/', include('api.urls')),
 ]
 
 if settings.DEBUG:

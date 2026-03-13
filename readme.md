@@ -69,16 +69,17 @@ python manage.py runserver
 | URL | Descripción |
 |-----|-------------|
 | `/` | Inicio (menú principal) |
-| `/blog/tareas/` | Lista de tareas con búsqueda |
-| `/blog/tareas/crear/` | Crear nueva tarea |
-| `/blog/mensajes/` | Libro de visitas |
-| `/blog/encuesta/` | Encuestas y estadísticas |
-| `/blog/clima/` | Clima actual (API externa) |
-| `/blog/generarexcel/` | Descargar datos en Excel (admin) |
-| `/blog/perfil/` | Perfil del usuario |
-| `/blog/perfil/editar/` | Editar perfil y foto |
-| `/blog/login/` | Iniciar sesión |
-| `/blog/registro/` | Crear cuenta |
+| `/posts/` | Lista de posts |
+| `/tareas/` | Lista de tareas con búsqueda |
+| `/tareas/crear/` | Crear nueva tarea |
+| `/mensajes/` | Libro de visitas |
+| `/encuesta/` | Encuestas y estadísticas |
+| `/clima/` | Clima actual (API externa) |
+| `/generarexcel/` | Descargar datos en Excel (admin) |
+| `/perfil/` | Perfil del usuario |
+| `/perfil/editar/` | Editar perfil y foto |
+| `/login/` | Iniciar sesión |
+| `/registro/` | Crear cuenta |
 | `/admin/` | Panel de administración |
 
 ## Tecnologías
@@ -94,18 +95,14 @@ python manage.py runserver
 
 ```
 PruebaDjango/
-├── blog/                         # App principal
-│   ├── migrations/               # Migraciones de BD
-│   ├── static/blog/              # CSS e imágenes
-│   ├── templates/blog/           # Plantillas HTML
-│   ├── models.py                 # Modelos (Post, Tarea, Mensaje, Encuesta, Profile)
-│   ├── views.py                  # Vistas
-│   ├── forms.py                  # Formularios
-│   ├── urls.py                   # Rutas
-│   ├── admin.py                  # Configuración admin
-│   ├── signals.py                # Signals (auto-crear Profile)
-│   ├── middleware.py             # Middleware personalizado
-│   └── context_processors.py     # Context processors
+├── home/                         # App: páginas de inicio y ejemplos
+├── tareas/                       # App: gestión de tareas (modelos, vistas, templates)
+├── mensajes/                     # App: libro de visitas / mensajes
+├── encuestas/                    # App: encuestas y estadísticas
+├── usuarios/                     # App: usuarios, perfiles y middleware
+├── posts/                        # App: posts y comentarios
+├── clima/                        # App: consumo OpenWeather
+├── blog/                         # Carpeta histórica con recursos estáticos/plantilla base
 ├── PruebaDjango/                 # Configuración del proyecto
 │   ├── settings.py               # Settings
 │   ├── urls.py                   # URLs raíz
@@ -114,7 +111,7 @@ PruebaDjango/
 ├── requirements.txt              # Dependencias
 ├── .env.example                  # Variables de entorno (plantilla)
 ├── .gitignore                    # Gitignore
-└── README.md                     # Este archivo
+└── readme.md                     # Este archivo
 ```
 
 ## Ejercicios prácticos incluidos
